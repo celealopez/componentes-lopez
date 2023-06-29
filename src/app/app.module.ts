@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './componentes/toolbar/toolbar.component';
 import { MenuIzquierdaComponent } from './componentes/menu-izquierda/menu-izquierda.component';
 import { AreaContenidoComponent } from './componentes/area-contenido/area-contenido.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AreaContenidoComponent } from './componentes/area-contenido/area-conten
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
