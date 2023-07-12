@@ -6,11 +6,11 @@
   <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>Nombre</mat-label>
-      <input matInput  formControlName="nombre">
+      <input matInput  formControlName="name">
     </mat-form-field></mat-grid-tile>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>Apellido</mat-label>
-      <input matInput formControlName="apellido">
+      <input matInput formControlName="username">
     </mat-form-field></mat-grid-tile>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>DNI</mat-label>
@@ -21,35 +21,36 @@
     </mat-form-field></mat-grid-tile>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>Teléfono</mat-label>
-      <input matInput formControlName="telefono">
+      <input matInput formControlName="phone">
     </mat-form-field></mat-grid-tile>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email">
     </mat-form-field></mat-grid-tile>
   </tr></mat-grid-list>
-  <button mat-raised-button color="primary">Guardar</button>
+  <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
   
 </form>
 
 
 <br><hr>
-<table class="table">
+<table class="table container-fluid">
     <thead>
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">username</th>
-        <th scope="col">phone</th>
-        <th scope="col">website</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Dni</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     <tbody> 
-      <tr *ngFor="let item of alumnos">
-        <th scope="row">{{item.id}}</th>
+      <tr *ngFor="let item of listaAlumnos">
         <td>{{item.name}}</td>
         <td>{{item.username}}</td>
+        <td>{{item.dni}}</td>
         <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
         <td>{{item.email}}</td>
       </tr>
     </tbody>

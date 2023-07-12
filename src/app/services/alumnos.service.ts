@@ -16,4 +16,8 @@ export class AlumnosService {
     return this.http.get<Alumno[]>(url);
   }
 
+  guardar(data : Alumno){
+    return this.http.post<any>("https://jsonplaceholder.typicode.com/users",data)
+  }
+
 }
