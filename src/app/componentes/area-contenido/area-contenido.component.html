@@ -1,5 +1,39 @@
 
 <!-- <img src="https://becasmexico.org/wp-content/uploads/2021/11/cursos-sobre-programacion.jpg" alt="" class="img"> -->
+<form [formGroup]="userModel" class="example-form" >
+
+<h1>Inscripción</h1>
+  <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
+    <mat-grid-tile><mat-form-field class="example-full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput  formControlName="nombre">
+    </mat-form-field></mat-grid-tile>
+    <mat-grid-tile><mat-form-field class="example-full-width">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+    </mat-form-field></mat-grid-tile>
+    <mat-grid-tile><mat-form-field class="example-full-width">
+      <mat-label>DNI</mat-label>
+      <input matInput  formControlName="dni">
+      <mat-error *ngIf="">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field></mat-grid-tile>
+    <mat-grid-tile><mat-form-field class="example-full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono">
+    </mat-form-field></mat-grid-tile>
+    <mat-grid-tile><mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field></mat-grid-tile>
+  </tr></mat-grid-list>
+  <button mat-raised-button color="primary">Guardar</button>
+  
+</form>
+
+
+<br><hr>
 <table class="table">
     <thead>
       <tr>
