@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Alumno } from 'src/app/models/alumno.model';
 import { AlumnosService } from 'src/app/services/alumnos.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EdicionAlumnoComponent } from '../edicion-alumno/edicion-alumno.component';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,13 +18,11 @@ export class AreaContenidoComponent implements OnInit {
 alumnos : Alumno [] = [];
 userModel:FormGroup = new FormGroup({});
 listaAlumnos:any[] = [];
-  constructor(public alumnoService : AlumnosService, private fb : FormBuilder , public http : HttpClient) { 
+  constructor(public alumnoService : AlumnosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog) { 
 this.userModel = this.fb.group({
-  name:new FormControl(null, [Validators.required]),
-  username:new FormControl(null, [Validators.required]),
+  nombre:new FormControl(null, [Validators.required]),
+  apellido:new FormControl(null, [Validators.required]),
   dni:new FormControl(null, [Validators.required,Validators.pattern('^[0-9]*$')]),
-  phone:new FormControl(null, [Validators.required,Validators.pattern('^[0-9]*$')]),
-  email:new FormControl(null, [Validators.required,Validators.email]),
 })
   }
 
@@ -40,15 +41,76 @@ this.userModel = this.fb.group({
       complete: () => {
       }
     });
+    this.alumnos = this.alumnoService.alumnos;
   }
 
-guardar(){
+  public guardar(alumno: Alumno): void {
   if(this.userModel.valid){
-this.listaAlumnos.push(this.userModel.value);
+      this.alumnoService.guardar(alumno).subscribe({
+        next: () => {
+          this.alumnoService.obtener().subscribe({
+            next: (data: Alumno[]) => {
+              this.alumnos = data;
+            },
+            error: (error: any) => {
+              console.error(error);
+            },
+            complete: () => {
+            }
+          });
+        },
+        error: (error: any) => {
+          console.error(error);
+        }
+      });
 this.userModel.reset();
 this.userModel.markAsUntouched();
 }else{
   alert("Sus datos están incorrectos. Verifique");
 }
 }
+
+
+public eliminarAlumno(id: string): void {
+  this.alumnoService.eliminar(id).subscribe({
+    next: () => {
+      this.alumnoService.obtener().subscribe({
+        next: (data: Alumno[]) => {
+          this.alumnos = data;
+        },
+        error: (error: any) => {
+          console.error(error);
+        },
+        complete: () => {
+        }
+      });
+    },
+    error: (error: any) => {
+      console.error(error);
+    }
+  });
 }
+
+public editarAlumno(alumno: Alumno): Observable<any>  {
+    const dialogRef = this.dialog.open(EdicionAlumnoComponent, {
+      data: alumno 
+    }); 
+    dialogRef.afterClosed()
+      this.alumnoService.obtener().subscribe({
+        next: (data: Alumno[]) => {
+          this.alumnos = data;
+        },
+        error: (error: any) => {
+          console.error(error);
+        },
+        complete: () => {
+        }
+      });
+
+    
+    return dialogRef.afterClosed();
+  }
+}
+  
+  
+  

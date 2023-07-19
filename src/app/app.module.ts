@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './componentes/toolbar/toolbar.component';
@@ -13,13 +13,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EdicionAlumnoComponent } from './componentes/edicion-alumno/edicion-alumno.component';
+import { NombreCompletoPipe } from './pipes/nombre-completo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     MenuIzquierdaComponent,
-    AreaContenidoComponent
+    AreaContenidoComponent,
+    EdicionAlumnoComponent,
+    NombreCompletoPipe
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
