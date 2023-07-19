@@ -95,7 +95,6 @@ public editarAlumno(alumno: Alumno): Observable<any>  {
     const dialogRef = this.dialog.open(EdicionAlumnoComponent, {
       data: alumno 
     }); 
-    dialogRef.afterClosed()
       this.alumnoService.obtener().subscribe({
         next: (data: Alumno[]) => {
           this.alumnos = data;
