@@ -34,21 +34,12 @@ export class EdicionAlumnoComponent implements OnInit {
   guardarCambios(alumno: Alumno): void {
     this.alumnoService.editar(alumno).subscribe({
       next: () => {
-        this.alumnoService.obtener().subscribe({
-          next: (data: Alumno[]) => {
-            this.alumnos = data;
-          },
+        this.alumnoService.newItemEvent.emit('Alumno editado');
+      },
           error: (error: any) => {
             console.error(error);
           },
-          complete: () => {
-          }
         });
-      },
-      error: (error: any) => {
-        console.error(error);
-      }
-    });
     this.dialogRef.close(this.alumno);
   }
 

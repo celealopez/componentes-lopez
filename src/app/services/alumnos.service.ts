@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Alumno } from '../models/alumno.model';
 
@@ -9,6 +9,7 @@ import { Alumno } from '../models/alumno.model';
 })
 export class AlumnosService {
   public alumnos: Alumno[] = [];
+  @Output() newItemEvent = new EventEmitter<string>();
 
   constructor(public http: HttpClient) { }
 
@@ -28,6 +29,7 @@ export class AlumnosService {
 
   editar(alumno: Alumno):Observable<any>{
     const url = `https://63645a9d7b209ece0f451a47.mockapi.io/alumnos/${alumno.id}`; 
+    this.newItemEvent.emit('Alumno editado');
     return this.http.put<Alumno>(url,alumno);
   }
 

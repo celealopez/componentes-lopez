@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody> 
-      <tr *ngFor="let item of alumnos">
+      <tr *ngFor="let item of alumnos$ | async">
         <td>{{item | nombreCompleto}}</td>
         <td>{{item.dni}}</td>
         <td><mat-icon  (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon (click)="editarAlumno(item)">edit</mat-icon></td>

@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./area-contenido.component.scss']
 })
 export class AreaContenidoComponent implements OnInit {
-alumnos : Alumno [] = [];
+  alumnos$: Observable<Alumno[]> = new Observable<Alumno[]>(); 
 userModel:FormGroup = new FormGroup({});
 listaAlumnos:any[] = [];
   constructor(public alumnoService : AlumnosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog) { 
@@ -24,24 +24,18 @@ this.userModel = this.fb.group({
   apellido:new FormControl(null, [Validators.required]),
   dni:new FormControl(null, [Validators.required,Validators.pattern('^[0-9]*$')]),
 })
+this.alumnos$ = this.alumnoService.obtener();
   }
 
   async ngOnInit (){
  this.usuarios();
+ this.alumnoService.newItemEvent.subscribe((data)=> {
+  this.usuarios();
+ })
   }
 
   public usuarios(){
-    this.alumnoService.obtener().subscribe({
-      next: (data: Alumno[]) => {
-        this.alumnos = data;
-      },
-      error: (error: any) => {
-        console.error(error);
-      },
-      complete: () => {
-      }
-    });
-    this.alumnos = this.alumnoService.alumnos;
+    this.alumnos$ = this.alumnoService.obtener();
   }
 
   public guardar(alumno: Alumno): void {
@@ -50,7 +44,7 @@ this.userModel = this.fb.group({
         next: () => {
           this.alumnoService.obtener().subscribe({
             next: (data: Alumno[]) => {
-              this.alumnos = data;
+              this.alumnos$ = this.alumnoService.obtener();
             },
             error: (error: any) => {
               console.error(error);
@@ -76,7 +70,7 @@ public eliminarAlumno(id: string): void {
     next: () => {
       this.alumnoService.obtener().subscribe({
         next: (data: Alumno[]) => {
-          this.alumnos = data;
+          this.alumnos$ = this.alumnoService.obtener();
         },
         error: (error: any) => {
           console.error(error);
@@ -97,7 +91,7 @@ public editarAlumno(alumno: Alumno): Observable<any>  {
     }); 
       this.alumnoService.obtener().subscribe({
         next: (data: Alumno[]) => {
-          this.alumnos = data;
+          this.alumnos$ = this.alumnoService.obtener();
         },
         error: (error: any) => {
           console.error(error);
