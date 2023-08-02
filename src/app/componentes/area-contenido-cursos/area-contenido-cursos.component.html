@@ -1,0 +1,40 @@
+
+<!-- <img src="https://becasmexico.org/wp-content/uploads/2021/11/cursos-sobre-programacion.jpg" alt="" class="img"> -->
+<form [formGroup]="userModel" class="example-form" >
+
+    <h1 appTitulo20px >Cursos</h1>
+      <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
+        <mat-grid-tile><mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput  formControlName="nombre">
+        </mat-form-field></mat-grid-tile>
+        <mat-grid-tile><mat-form-field class="example-full-width">
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo">
+        </mat-form-field></mat-grid-tile>
+      </tr></mat-grid-list>
+      <button mat-raised-button color="primary" (click)="guardar(userModel.value)">Guardar</button>
+      
+    </form>
+    
+    
+    <br><hr>
+    <table class="table container-fluid">
+        <thead>
+          <tr>
+            <th scope="col">Curso</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Acciones</th>
+     
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let item of cursos$ | async">
+            <td>{{item.nombre}}</td>
+            <td>{{item.tipo}}</td>
+            <td><mat-icon  (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon (click)="editarAlumno(item)">edit</mat-icon></td>
+      
+          </tr>
+        </tbody>
+    </table>    
+    

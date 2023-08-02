@@ -1,0 +1,20 @@
+
+<h2 mat-dialog-title appTitulo20px>Editar Alumno</h2>
+<mat-dialog-content >
+<form [formGroup]="userModel"  >
+      <mat-grid-list cols="1" rowHeight="150px" class="example-full-width" ><tr>
+        <mat-grid-tile><mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput  formControlName="nombre">
+        </mat-form-field></mat-grid-tile>
+        <mat-grid-tile><mat-form-field class="example-full-width">
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo">
+        </mat-form-field></mat-grid-tile>
+      </tr></mat-grid-list>
+   </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="cerrar()">Cerrar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="guardarCambios(userModel.value)">Guardar</button>
+  </mat-dialog-actions>

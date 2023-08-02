@@ -16,6 +16,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EdicionAlumnoComponent } from './componentes/edicion-alumno/edicion-alumno.component';
 import { NombreCompletoPipe } from './pipes/nombre-completo.pipe';
+import { AuthComponent } from './auth/auth/auth.component';
+import { AreaContenidoCursosComponent } from './componentes/area-contenido-cursos/area-contenido-cursos.component';
+import { EdicionCursoComponent } from './componentes/edicion-curso/edicion-curso.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { NombreCompletoPipe } from './pipes/nombre-completo.pipe';
     MenuIzquierdaComponent,
     AreaContenidoComponent,
     EdicionAlumnoComponent,
-    NombreCompletoPipe
+    NombreCompletoPipe,
+    AuthComponent,
+    AreaContenidoCursosComponent,
+    EdicionCursoComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
