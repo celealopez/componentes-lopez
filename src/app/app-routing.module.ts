@@ -5,27 +5,28 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { AppComponent } from './app.component';
 import { AreaContenidoCursosComponent } from './componentes/area-contenido-cursos/area-contenido-cursos.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { AuthGuard } from './auth/auth/auth.guard';
 
 const routes: Routes = [
-  {
-    path:'area-contenido',
-    component: AreaContenidoComponent
-  },
-  {
-    path:'auth',
-    component: AuthComponent
-  },
-  {
-    path:'area-contenido-cursos',
-    component: AreaContenidoCursosComponent
-  },
   {
     path:'inicio',
     component: InicioComponent
   },
   {
+    path:'area-contenido',
+    component: AreaContenidoComponent, canActivate: [AuthGuard]
+  },
+  {
+    path:'auth',
+    component: AuthComponent, canActivate: [AuthGuard]
+  },
+  {
+    path:'area-contenido-cursos',
+    component: AreaContenidoCursosComponent, canActivate: [AuthGuard]
+  },
+  {
     path:'**',
-    component: InicioComponent
+    component: AuthComponent
   },
 ];
 
