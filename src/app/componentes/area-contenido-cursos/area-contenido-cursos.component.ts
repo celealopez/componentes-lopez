@@ -29,6 +29,7 @@ this.cursos$ = this.cursoService.obtener();
   async ngOnInit (){
  this.usuarios();
  this.cursoService.newItemEvent.subscribe((data)=> {
+  this.usuarios();
  })
  const userRole = this.authService.getRole();
  if(userRole == 'admin'){

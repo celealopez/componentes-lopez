@@ -7,6 +7,7 @@ import { AreaContenidoCursosComponent } from './componentes/area-contenido-curso
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { AuthGuard } from './auth/auth/auth.guard';
 import { RoleGuard } from './services/role-guard';
+import { InscripcionesACursosComponent } from './componentes/inscripciones-a-cursos/inscripciones-a-cursos.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path:'area-contenido-cursos',
     component: AreaContenidoCursosComponent, 
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'inscripciones',
+    component: InscripcionesACursosComponent, 
     canActivate: [AuthGuard]
   },
   {

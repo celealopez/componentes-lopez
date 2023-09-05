@@ -1,0 +1,20 @@
+<br><hr>
+<div class="container"><h1>Inscripciones</h1>
+<hr>
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let item of cursos$ | async">
+        <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title>{{item.nombre}}</mat-card-title>
+              <mat-card-subtitle>{{item.tipo}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+              <button mat-button>Inscripción</button>
+              <button mat-button>Más info</button>
+            </mat-card-actions>
+          </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+</div>

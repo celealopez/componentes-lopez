@@ -20,8 +20,11 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { AreaContenidoCursosComponent } from './componentes/area-contenido-cursos/area-contenido-cursos.component';
 import { EdicionCursoComponent } from './componentes/edicion-curso/edicion-curso.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
-import { AlumnosEffects } from './effects/alumnos.effects';
-import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesACursosComponent } from './componentes/inscripciones-a-cursos/inscripciones-a-cursos.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { EffectsModule } from '@ngrx/effects';
     AuthComponent,
     AreaContenidoCursosComponent,
     EdicionCursoComponent,
-    InicioComponent
+    InicioComponent,
+    InscripcionesACursosComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import { EffectsModule } from '@ngrx/effects';
     MatIconModule,
     MatDialogModule,
     FormsModule,
-    EffectsModule.forRoot([AlumnosEffects])
+    MatCardModule,
+    MatProgressBarModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

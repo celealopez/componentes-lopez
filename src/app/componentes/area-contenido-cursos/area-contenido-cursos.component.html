@@ -1,6 +1,7 @@
 
-<!-- <img src="https://becasmexico.org/wp-content/uploads/2021/11/cursos-sobre-programacion.jpg" alt="" class="img"> -->
-<form *ngIf="isAdmin" [formGroup]="userModel" class="example-form" >
+<mat-grid-list cols="2" rowHeight="700px">
+  <mat-grid-tile *ngIf="isAdmin">
+<form  [formGroup]="userModel" class="example-form" >
 
     <h1 appTitulo20px >Cursos</h1>
       <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
@@ -16,7 +17,8 @@
       <button mat-raised-button color="primary" (click)="guardar(userModel.value)">Guardar</button>
       
     </form>
-    
+  </mat-grid-tile>
+  <mat-grid-tile>
     <div class="container">
       <br><hr>
       <h1 appTitulo20px >Lista de Cursos</h1>
@@ -40,3 +42,5 @@
         </tbody>
     </table>    
 </div>
+</mat-grid-tile>
+</mat-grid-list>
