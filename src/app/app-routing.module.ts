@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AreaContenidoCursosComponent } from './componentes/area-contenido-cursos/area-contenido-cursos.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { AuthGuard } from './auth/auth/auth.guard';
+import { RoleGuard } from './services/role-guard';
 
 const routes: Routes = [
   {
@@ -14,15 +15,18 @@ const routes: Routes = [
   },
   {
     path:'area-contenido',
-    component: AreaContenidoComponent, canActivate: [AuthGuard]
+    component: AreaContenidoComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path:'auth',
-    component: AuthComponent, canActivate: [AuthGuard]
+    component: AuthComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path:'area-contenido-cursos',
-    component: AreaContenidoCursosComponent, canActivate: [AuthGuard]
+    component: AreaContenidoCursosComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path:'**',

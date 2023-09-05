@@ -1,6 +1,6 @@
 
 <!-- <img src="https://becasmexico.org/wp-content/uploads/2021/11/cursos-sobre-programacion.jpg" alt="" class="img"> -->
-<form [formGroup]="userModel" class="example-form" >
+<form *ngIf="isAdmin" [formGroup]="userModel" class="example-form" >
 
     <h1 appTitulo20px >Cursos</h1>
       <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
@@ -17,14 +17,16 @@
       
     </form>
     
-    
-    <br><hr>
+    <div class="container">
+      <br><hr>
+      <h1 appTitulo20px >Lista de Cursos</h1>
+      <br><hr>
     <table class="table container-fluid">
         <thead>
           <tr>
             <th scope="col">Curso</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Acciones</th>
+            <th *ngIf="isAdmin" scope="col">Acciones</th>
      
           </tr>
         </thead>
@@ -32,9 +34,9 @@
           <tr *ngFor="let item of cursos$ | async">
             <td>{{item.nombre}}</td>
             <td>{{item.tipo}}</td>
-            <td><mat-icon  (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon (click)="editarAlumno(item)">edit</mat-icon></td>
+            <td><mat-icon *ngIf="isAdmin" (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon *ngIf="isAdmin" (click)="editarAlumno(item)">edit</mat-icon></td>
       
           </tr>
         </tbody>
     </table>    
-    
+</div>

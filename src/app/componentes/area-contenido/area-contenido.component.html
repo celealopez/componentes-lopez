@@ -1,7 +1,7 @@
 
-<form [formGroup]="userModel" class="example-form" >
+<form *ngIf="isAdmin" [formGroup]="userModel" class="example-form" >
 
-<h1 appTitulo20px >Alumnos Inscripción</h1>
+<h1 appTitulo20px >Agregar Alumnos</h1>
   <mat-grid-list cols="2" rowHeight="150px" class="example-full-width" cellspacing="0"><tr>
     <mat-grid-tile><mat-form-field class="example-full-width">
       <mat-label>Nombre</mat-label>
@@ -19,15 +19,16 @@
   <button mat-raised-button color="primary" (click)="guardar(userModel.value)">Guardar</button>
   
 </form>
-
-
+<div class="container">
+<br><hr>
+<h1 appTitulo20px >Lista de Alumnos</h1>
 <br><hr>
 <table class="table container-fluid">
     <thead>
       <tr>
         <th scope="col">Nombre</th>
         <th scope="col">DNI</th>
-        <th scope="col">Acciones</th>
+        <th scope="col" *ngIf="isAdmin">Acciones</th>
  
       </tr>
     </thead>
@@ -35,8 +36,9 @@
       <tr *ngFor="let item of alumnos$ | async">
         <td>{{item | nombreCompleto}}</td>
         <td>{{item.dni}}</td>
-        <td><mat-icon  (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon (click)="editarAlumno(item)">edit</mat-icon></td>
+        <td><mat-icon *ngIf="isAdmin" (click)="eliminarAlumno(item.id.toString())" >delete</mat-icon><mat-icon *ngIf="isAdmin" (click)="editarAlumno(item)">edit</mat-icon></td>
   
       </tr>
     </tbody>
 </table>    
+</div>

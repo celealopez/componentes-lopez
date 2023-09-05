@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Curso } from 'src/app/models/curso.model';
 import { CursosService } from 'src/app/services/cursos.service';
 import { EdicionCursoComponent } from '../edicion-curso/edicion-curso.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-area-contenido-cursos',
@@ -16,7 +17,8 @@ export class AreaContenidoCursosComponent  implements OnInit {
   cursos$: Observable<Curso[]> = new Observable<Curso[]>(); 
 userModel:FormGroup = new FormGroup({});
 listaAlumnos:any[] = [];
-  constructor(public cursoService : CursosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog) { 
+isAdmin = false;
+  constructor(public cursoService : CursosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog, public authService :AuthService) { 
 this.userModel = this.fb.group({
   nombre:new FormControl(null, [Validators.required]),
   tipo:new FormControl(null, [Validators.required])
@@ -27,8 +29,11 @@ this.cursos$ = this.cursoService.obtener();
   async ngOnInit (){
  this.usuarios();
  this.cursoService.newItemEvent.subscribe((data)=> {
-  this.usuarios();
  })
+ const userRole = this.authService.getRole();
+ if(userRole == 'admin'){
+  this.isAdmin = true;
+} ;
   }
 
   public usuarios(){

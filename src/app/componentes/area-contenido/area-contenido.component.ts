@@ -6,6 +6,7 @@ import { AlumnosService } from 'src/app/services/alumnos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EdicionAlumnoComponent } from '../edicion-alumno/edicion-alumno.component';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -18,7 +19,8 @@ export class AreaContenidoComponent implements OnInit {
   alumnos$: Observable<Alumno[]> = new Observable<Alumno[]>(); 
 userModel:FormGroup = new FormGroup({});
 listaAlumnos:any[] = [];
-  constructor(public alumnoService : AlumnosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog) { 
+isAdmin = false;
+  constructor(public alumnoService : AlumnosService, private fb : FormBuilder , public http : HttpClient,private dialog: MatDialog, public authService :AuthService) { 
 this.userModel = this.fb.group({
   nombre:new FormControl(null, [Validators.required]),
   apellido:new FormControl(null, [Validators.required]),
@@ -32,6 +34,8 @@ this.alumnos$ = this.alumnoService.obtener();
  this.alumnoService.newItemEvent.subscribe((data)=> {
   this.usuarios();
  })
+ const userRole = this.authService.getRole();
+ this.isAdmin = userRole === 'admin';
   }
 
   public usuarios(){

@@ -20,6 +20,8 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { AreaContenidoCursosComponent } from './componentes/area-contenido-cursos/area-contenido-cursos.component';
 import { EdicionCursoComponent } from './componentes/edicion-curso/edicion-curso.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { AlumnosEffects } from './effects/alumnos.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    EffectsModule.forRoot([AlumnosEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
